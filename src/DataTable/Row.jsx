@@ -1,15 +1,13 @@
 import React from 'react'
 
-const Row = (props) => {
-  const { row } = props
-
+const Row = ({edit_path, name1, email}) => {
   return (
     <tr>
       <td>
-        <a href={row.edit_path}>
-          {row.name1}
+        <a href={edit_path}>
+          {name1}
         </a><br />
-        <small>{row.email}</small>
+        <small>{email}</small>
       </td>
     </tr>
   )
