@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Pagination from '../Pagination'
 import TableBody from './TableBody'
-import Search from './Search'
+import Search from '../Search'
 
 const calculateTotalNumberOfPages = (rows, rowsPerPage) => {
   if (rowsPerPage === 0) return 0
