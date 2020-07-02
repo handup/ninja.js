@@ -1,8 +1,8 @@
 import React from 'react'
 
 import Pagination from '../Pagination'
-import Row from './Row'
 import Search from './Search'
+import TableBody from './TableBody'
 
 class DataTable extends React.Component {
   state = {
@@ -17,7 +17,7 @@ class DataTable extends React.Component {
 
   calculateTotalNumberOfPages(rows) {
     const { rowsPerPage } = this.props
-    if (rowsPerPage == 0) return 0
+    if (rowsPerPage === 0) return 0
     return Math.ceil(rows.length / rowsPerPage)
   }
 
@@ -44,26 +44,14 @@ class DataTable extends React.Component {
     this.setState({ currentPageNumber: pageNumber })
   }
 
-  rowsInPageNumber(pageNumber) {
-    const { rowsPerPage } = this.props
-    const startIndex = pageNumber * rowsPerPage
-    return [startIndex, startIndex + rowsPerPage]
-  }
-
   render() {
     const { rows, currentPageNumber, totalNumberOfPages } = this.state
-    const rowsToRender = rows
-      .map(row => <Row key={row.per_id} row={row} />)
-      .slice(...this.rowsInPageNumber(currentPageNumber))
+    const {rowsPerPage} = this.props
 
     return(
       <div>
         <Search onSearch={this.search.bind(this)} />
-        <table>
-          <tbody>
-            { rowsToRender }
-          </tbody>
-        </table>
+        <TableBody rows={rows} currentPageNumber={currentPageNumber} rowsPerPage={rowsPerPage}/>
         <Pagination
           currentPageNumber={currentPageNumber}
           totalNumberOfPages={totalNumberOfPages}

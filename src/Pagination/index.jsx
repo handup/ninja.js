@@ -9,7 +9,7 @@ const Pagination = ({ currentPageNumber, totalNumberOfPages, onChange }) => {
       .map(pageNumber => {
         return <Page
           key={pageNumber}
-          currentPageNumber={currentPageNumber}
+          isCurrent={currentPageNumber === pageNumber}
           pageNumber={pageNumber}
           onChange={onChange} />
       })
